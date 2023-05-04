@@ -342,5 +342,4 @@ public class Main extends Application {
     }
 }
 
-// Бұл тек commit жасау үшін енгізілген жол
-
+//hello
