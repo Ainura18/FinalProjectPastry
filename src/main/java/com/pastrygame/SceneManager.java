@@ -243,30 +243,4 @@ public class SceneManager {
         }
     }
 
-    public void showLoadingScene() {
-        System.out.println("SceneManager.showLoadingScene: Showing Loading Scene");
-
-        Label loadingLabel = new Label("Loading...");
-        loadingLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
-        loadingLabel.setTextFill(Color.PINK);
-
-        VBox layout = new VBox(20, loadingLabel);
-        layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: #fff0f5;");
-
-        Scene scene = new Scene(layout, 800, 600);
-        stage.setScene(scene);
-        stage.show();
-
-        // Simulate loading delay, then go to welcome scene
-        new Thread(() -> {
-            try {
-                Thread.sleep(2000); // 2 секунд жүктеу
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            javafx.application.Platform.runLater(this::showWelcomeScene);
-        }).start();
-    }
-
 }
