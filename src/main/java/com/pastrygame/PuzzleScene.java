@@ -168,5 +168,17 @@ public class PuzzleScene {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    
+
+
+
+
+    private void resetPuzzle() {
+        timeLeft = 60;
+        piecesPlacedCorrectly = 0;
+        puzzlePieces.clear();
+        slots.clear();
+        timer.playFromStart();
+        sceneManager.showPuzzleScene(pastryName); // қайта жүктеу
+    }
+
 }
