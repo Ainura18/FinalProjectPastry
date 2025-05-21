@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -21,12 +22,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class PuzzleScene {
-    private SceneManager sceneManager;
-    private String pastryName;
-    private int timeLeft = 60; // 60 seconds
+    private final SceneManager sceneManager;
+    private final String pastryName;
+    private int timeLeft = 60; // секундтар
     private Timeline timer;
-    private List<ImageView> puzzlePieces = new ArrayList<>();
-    private List<StackPane> slots = new ArrayList<>();
+    private final List<ImageView> puzzlePieces = new ArrayList<>();
+    private final List<StackPane> slots = new ArrayList<>();
     private int piecesPlacedCorrectly = 0;
 
     public PuzzleScene(String pastryName, SceneManager sceneManager) {
@@ -58,6 +59,7 @@ public class PuzzleScene {
         Pane puzzleArea = new Pane();
         puzzleArea.setPrefSize(400, 400);
 
+        // Суреттің бөлшектерін қою орындары (слоттар)
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 StackPane slot = new StackPane();
@@ -71,48 +73,78 @@ public class PuzzleScene {
             }
         }
 
+        // Бөлшектерді араластыру үшін позициялардың тізімі
         List<Integer> positions = new ArrayList<>(List.of(0, 1, 2, 3));
         Collections.shuffle(positions);
+
         for (int i = 0; i < 4; i++) {
             ImageView piece = new ImageView(createPuzzlePiece(pastryImage, i % 2, i / 2));
             piece.setFitWidth(150);
             piece.setFitHeight(150);
             piece.setUserData(i);
-            puzzlePieces.add(piece);
+
+            // Random позицияға орналастыру
             piece.setLayoutX(50 + (positions.get(i) % 2) * 500);
             piece.setLayoutY(50 + (positions.get(i) / 2) * 300);
-            // Drag-and-drop
-            final double[] startPos = {0, 0};
+
+            final double[] dragDelta = new double[2];
             piece.setOnMousePressed(e -> {
-                startPos[0] = e.getSceneX() - piece.getLayoutX();
-                startPos[1] = e.getSceneY() - piece.getLayoutY();
+                dragDelta[0] = e.getSceneX() - piece.getLayoutX();
+                dragDelta[1] = e.getSceneY() - piece.getLayoutY();
             });
+
             piece.setOnMouseDragged(e -> {
-                piece.setLayoutX(e.getSceneX() - startPos[0]);
-                piece.setLayoutY(e.getSceneY() - startPos[1]);
+                piece.setLayoutX(e.getSceneX() - dragDelta[0]);
+                piece.setLayoutY(e.getSceneY() - dragDelta[1]);
             });
+
             piece.setOnMouseReleased(e -> {
+                boolean placedInSlot = false;
                 for (StackPane slot : slots) {
                     if (slot.getBoundsInParent().contains(e.getSceneX(), e.getSceneY() - 50)) {
-                        piece.setLayoutX(slot.getLayoutX());
-                        piece.setLayoutY(slot.getLayoutY());
+                        // Түсірілген орын слот ішінде болса
                         int pieceIndex = (int) piece.getUserData();
                         int correctIndex = (int) slot.getProperties().get("correctPiece");
+
                         if (pieceIndex == correctIndex) {
-                            piecesPlacedCorrectly++;
+                            // Егер бөлшек дұрыс слотқа қойылса
+                            piece.setLayoutX(slot.getLayoutX());
+                            piece.setLayoutY(slot.getLayoutY());
                             piece.setDisable(true);
-                            if (piecesPlacedCorrectly == 4) {
-                                timer.stop();
-                                sceneManager.showMemoryMatchScene();
+
+                            if (!piece.getProperties().containsKey("placed")) {
+                                piecesPlacedCorrectly++;
+                                piece.getProperties().put("placed", true);
                             }
+
+                            placedInSlot = true;
                         }
                         break;
                     }
                 }
+                if (!placedInSlot) {
+                    // Егер бөлшек дұрыс емес жерге қойылса, қайта бастапқы позицияға келу керек
+                    // Және дұрыс қойылғандар санын азайту керек, егер бұл бөлшек алдыңғы дұрыс қойылған болса
+                    if (piece.getProperties().containsKey("placed")) {
+                        piecesPlacedCorrectly--;
+                        piece.getProperties().remove("placed");
+                    }
+                    // Қайта бастапқы жерге тасымалдау
+                    piece.setLayoutX(50 + (positions.get((int) piece.getUserData()) % 2) * 500);
+                    piece.setLayoutY(50 + (positions.get((int) piece.getUserData()) / 2) * 300);
+                }
+                // Егер барлық бөлшектер дұрыс қойылған болса
+                if (piecesPlacedCorrectly == 4) {
+                    timer.stop();
+                    sceneManager.showMemoryMatchScene();
+                }
             });
+
+            puzzlePieces.add(piece);
             puzzleArea.getChildren().add(piece);
         }
 
+        // Таймерді бастау
         timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             timeLeft--;
             timerText.setText("Time Left: " + timeLeft + " seconds");
@@ -164,7 +196,7 @@ public class PuzzleScene {
     }
 
     private void showAlert(String message) {
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.showAndWait();
     }
