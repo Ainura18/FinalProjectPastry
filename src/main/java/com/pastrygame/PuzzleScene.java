@@ -169,5 +169,10 @@ public class PuzzleScene {
         alert.showAndWait();
     }
 
+    public int getRemainingTime() {
+        System.out.println("PuzzleScene.getRemainingTime: " + timeLeft);
+        return timeLeft;
+    }
+
 
 }
