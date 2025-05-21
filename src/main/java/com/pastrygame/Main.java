@@ -341,3 +341,6 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+
+// Бұл тек commit үшін жасалған комментарий
