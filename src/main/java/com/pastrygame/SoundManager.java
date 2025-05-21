@@ -83,4 +83,12 @@ public class SoundManager {
         }
     }
 
+    public void restartBackgroundMusic() {
+        if (backgroundMusic != null) {
+            backgroundMusic.setFramePosition(0); // Go to beginning
+            backgroundMusic.start();
+            System.out.println("SoundManager.restartBackgroundMusic: Background music restarted");
+        }
+    }
+
 }
