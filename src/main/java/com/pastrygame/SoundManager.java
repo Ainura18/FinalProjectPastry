@@ -83,30 +83,4 @@ public class SoundManager {
         }
     }
 
-    private boolean isMuted = false;
-
-    public void toggleMute() {
-        isMuted = !isMuted;
-
-        if (backgroundMusic != null && backgroundMusic.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
-            FloatControl gainControl = (FloatControl) backgroundMusic.getControl(FloatControl.Type.MASTER_GAIN);
-            if (isMuted) {
-                gainControl.setValue(-80.0f); // Minimum volume (mute)
-                System.out.println("SoundManager.toggleMute: Background music muted");
-            } else {
-                gainControl.setValue(0.0f); // Normal volume
-                System.out.println("SoundManager.toggleMute: Background music unmuted");
-            }
-        }
-
-        if (winMusic != null && winMusic.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
-            FloatControl gainControl = (FloatControl) winMusic.getControl(FloatControl.Type.MASTER_GAIN);
-            if (isMuted) {
-                gainControl.setValue(-80.0f);
-            } else {
-                gainControl.setValue(0.0f);
-            }
-        }
-    }
-
 }
