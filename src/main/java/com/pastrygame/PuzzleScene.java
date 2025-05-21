@@ -169,4 +169,51 @@ public class PuzzleScene {
         alert.showAndWait();
     }
 
+
+
+
+    private void showWinMessage() {
+        // Фонға жарқыраған мәтін
+        Text victoryText = new Text("🎉 ЖЕҢІС! 🎉");
+        victoryText.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 40));
+        victoryText.setFill(Color.HOTPINK);
+        victoryText.setOpacity(0);
+
+        StackPane overlay = new StackPane(victoryText);
+        overlay.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7);");
+        overlay.setPrefSize(800, 600);
+
+        Scene currentScene = sceneManager.getStage().getScene();
+        if (currentScene.getRoot() instanceof VBox root) {
+            root.getChildren().add(overlay);
+
+            // Fade-in анимациясы
+            javafx.animation.FadeTransition ft = new javafx.animation.FadeTransition(Duration.seconds(1), victoryText);
+            ft.setFromValue(0);
+            ft.setToValue(1);
+            ft.setCycleCount(3);
+            ft.setAutoReverse(true);
+            ft.play();
+        }
+
+        // Жалғастыру сұрауы
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.CONFIRMATION);
+        alert.setTitle("ЖЕҢІС!");
+        alert.setHeaderText("Сіз барлық бөліктерді дұрыс құрастырдыңыз 🎉");
+        alert.setContentText("Келесі раундқа өтесіз бе, әлде басты бетке қайтасыз ба?");
+
+        javafx.scene.control.ButtonType nextLevel = new javafx.scene.control.ButtonType("Келесі раунд");
+        javafx.scene.control.ButtonType backToMenu = new javafx.scene.control.ButtonType("Басты бетке");
+
+        alert.getButtonTypes().setAll(nextLevel, backToMenu);
+
+        java.util.Optional<javafx.scene.control.ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == nextLevel) {
+            sceneManager.showMemoryMatchScene();
+        } else {
+            GameState.reset();
+            sceneManager.showWelcomeScene();
+        }
+    }
+
 }
