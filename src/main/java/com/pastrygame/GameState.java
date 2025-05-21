@@ -32,14 +32,4 @@ public class GameState {
         currentPastry = null;
         correctIngredients = null;
     }
-
-    public static void addIngredient(String ingredient) {
-        selectedIngredients.add(ingredient);
-        if (correctIngredients != null && correctIngredients.contains(ingredient)) {
-            score += 10; // Дұрыс ингредиент үшін ұпай қосылады
-        } else {
-            mistakes++; // Қате ингредиент үшін қате саны артады
-        }
-    }
-
 }
