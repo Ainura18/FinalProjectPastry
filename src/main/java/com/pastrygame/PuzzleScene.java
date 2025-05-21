@@ -170,11 +170,5 @@ public class PuzzleScene {
     }
 
 
-
-    private void highlightCorrectPlacement(ImageView piece, StackPane slot) {
-        slot.setStyle("-fx-border-color: green; -fx-border-width: 3;");
-        piece.setStyle("-fx-effect: dropshadow(gaussian, limegreen, 15, 0.5, 0, 0);");
-    }
-
-
+    
 }
