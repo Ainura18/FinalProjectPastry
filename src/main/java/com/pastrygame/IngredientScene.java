@@ -133,4 +133,12 @@ public class IngredientScene {
         System.out.println("IngredientScene.createScene: Ingredient Scene created");
         return scene;
     }
+
+    public void resetChecks() {
+        System.out.println("IngredientScene.resetChecks: Resetting all ingredient checkboxes");
+        for (CheckBox cb : ingredientChecks) {
+            cb.setSelected(false);
+        }
+    }
+
 }
