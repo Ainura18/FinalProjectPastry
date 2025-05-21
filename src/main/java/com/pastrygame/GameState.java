@@ -32,4 +32,9 @@ public class GameState {
         currentPastry = null;
         correctIngredients = null;
     }
+    public static boolean isRecipeComplete() {
+        if (correctIngredients == null || selectedIngredients == null) return false;
+        return selectedIngredients.containsAll(correctIngredients);
+    }
+
 }
