@@ -133,4 +133,15 @@ public class IngredientScene {
         System.out.println("IngredientScene.createScene: Ingredient Scene created");
         return scene;
     }
+
+    private void highlightCorrectAnswers() {
+        for (CheckBox cb : ingredientChecks) {
+            if (GameState.correctIngredients.contains(cb.getText())) {
+                cb.setTextFill(Color.FORESTGREEN);
+            } else {
+                cb.setTextFill(Color.DARKRED);
+            }
+        }
+    }
+
 }
