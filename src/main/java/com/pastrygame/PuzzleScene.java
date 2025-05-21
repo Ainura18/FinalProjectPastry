@@ -168,11 +168,6 @@ public class PuzzleScene {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-    public int getRemainingTime() {
-        System.out.println("PuzzleScene.getRemainingTime: " + timeLeft);
-        return timeLeft;
-    }
-
+    
 
 }
