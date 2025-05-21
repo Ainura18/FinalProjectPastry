@@ -1,4 +1,4 @@
-package org.example.erdtermproject;
+package com.pastrygame;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

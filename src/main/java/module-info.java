@@ -1,8 +1,9 @@
 module org.example.erdtermproject {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
-    opens org.example.erdtermproject to javafx.fxml;
-    exports org.example.erdtermproject;
+    opens com.pastrygame to javafx.fxml;
+    exports com.pastrygame;
 }
