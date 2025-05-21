@@ -168,23 +168,5 @@ public class PuzzleScene {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-
-    private void showHints() {
-        for (ImageView piece : puzzlePieces) {
-            int index = (int) piece.getUserData();
-            for (StackPane slot : slots) {
-                int correctIndex = (int) slot.getProperties().get("correctPiece");
-                if (index == correctIndex) {
-                    javafx.animation.FillTransition ft = new javafx.animation.FillTransition(
-                            Duration.seconds(0.5), slot.getBackground() == null ? new javafx.scene.shape.Rectangle(150, 150, Color.LIGHTYELLOW) : null, Color.LIGHTYELLOW, Color.TRANSPARENT);
-                    ft.setCycleCount(4);
-                    ft.setAutoReverse(true);
-                    ft.play();
-                    return;
-                }
-            }
-        }
-    }
-
+    
 }
