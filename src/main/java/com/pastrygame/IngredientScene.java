@@ -133,11 +133,4 @@ public class IngredientScene {
         System.out.println("IngredientScene.createScene: Ingredient Scene created");
         return scene;
     }
-    private void disableAllCheckBoxes() {
-        for (CheckBox cb : ingredientChecks) {
-            cb.setDisable(true);
-        }
-    }
-
-
 }
