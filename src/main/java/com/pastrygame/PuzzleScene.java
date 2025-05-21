@@ -168,7 +168,7 @@ public class PuzzleScene {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
+    
 
 
 }
