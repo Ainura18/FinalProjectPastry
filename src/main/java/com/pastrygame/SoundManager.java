@@ -82,4 +82,9 @@ public class SoundManager {
             System.out.println("SoundManager.stopWinMusic: No win music to stop or already closed");
         }
     }
+
+    public boolean isBackgroundMusicPlaying() {
+        return backgroundMusic != null && backgroundMusic.isRunning();
+    }
+
 }
