@@ -134,4 +134,9 @@ public class IngredientScene {
         return scene;
     }
 
+    public void updateCorrectIngredients(List<String> newCorrectIngredients) {
+        GameState.correctIngredients = newCorrectIngredients;
+        System.out.println("IngredientScene.updateCorrectIngredients: Updated correct ingredients to " + newCorrectIngredients);
+    }
+
 }
