@@ -243,37 +243,30 @@ public class SceneManager {
         }
     }
 
-    public void showHelpScene() {
-        System.out.println("SceneManager.showHelpScene: Switching to Help Scene");
+    public void showLoadingScene() {
+        System.out.println("SceneManager.showLoadingScene: Showing Loading Scene");
 
-        Label title = new Label("How to Play");
-        title.setFont(Font.font("Verdana", FontWeight.BOLD, 26));
-        title.setTextFill(Color.DARKBLUE);
+        Label loadingLabel = new Label("Loading...");
+        loadingLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+        loadingLabel.setTextFill(Color.PINK);
 
-        Label instructions = new Label(
-                """
-                1. Select a pastry to start your baking adventure.
-                2. Follow the recipe and add the correct ingredients.
-                3. Complete fun mini-games: puzzle, memory match, and hangman.
-                4. Make fewer mistakes to win!
-                5. Click 'Restart' to play again anytime.
-                """);
-        instructions.setFont(Font.font("Arial", 18));
-        instructions.setTextFill(Color.DARKGREEN);
-        instructions.setWrapText(true);
-
-        Button backButton = new Button("Back to Menu");
-        backButton.setStyle("-fx-background-color: #ffb6c1; -fx-text-fill: white; -fx-padding: 10; -fx-font-size: 16;");
-        backButton.setOnAction(e -> showWelcomeScene());
-
-        VBox layout = new VBox(20, title, instructions, backButton);
+        VBox layout = new VBox(20, loadingLabel);
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #fff0f5;");
-        Scene scene = new Scene(layout, 800, 600);
 
+        Scene scene = new Scene(layout, 800, 600);
         stage.setScene(scene);
         stage.show();
-        System.out.println("SceneManager.showHelpScene: Help Scene displayed");
+
+        // Simulate loading delay, then go to welcome scene
+        new Thread(() -> {
+            try {
+                Thread.sleep(2000); // 2 секунд жүктеу
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            javafx.application.Platform.runLater(this::showWelcomeScene);
+        }).start();
     }
 
 }
