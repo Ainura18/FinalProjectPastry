@@ -20,11 +20,9 @@ import java.util.Random;
 public class SceneManager {
     private static SceneManager instance;
     private Stage stage;
-    private SoundManager soundManager; // Added to manage win music
 
     private SceneManager(Stage stage) {
         this.stage = stage;
-        this.soundManager = SoundManager.getInstance(); // Initialize SoundManager
     }
 
     public static SceneManager getInstance(Stage stage) {
@@ -126,19 +124,13 @@ public class SceneManager {
 
     public void showWinScene() {
         System.out.println("SceneManager.showWinScene: Switching to Win Scene");
-        soundManager.stopBackgroundMusic(); // Stop background music
-        soundManager.playWinMusic(); // Play win music
-
         Label label = new Label("Game Over, You Are Winner!");
         label.setFont(Font.font("Verdana", FontWeight.BOLD, 28));
         label.setTextFill(Color.YELLOW);
 
         Button restartButton = new Button("Play Again");
         restartButton.setStyle("-fx-background-color: #ffb6c1; -fx-text-fill: white; -fx-padding: 10; -fx-font-size: 16;");
-        restartButton.setOnAction(e -> {
-            soundManager.stopWinMusic(); // Stop win music on restart
-            restartGame();
-        });
+        restartButton.setOnAction(e -> restartGame());
 
         Canvas canvas = new Canvas(800, 600);
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -201,12 +193,11 @@ public class SceneManager {
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.show();
-        System.out.println("SceneManager.showWinScene: Win Scene displayed with fireworks and win music");
+        System.out.println("SceneManager.showWinScene: Win Scene displayed with fireworks");
     }
 
     public void restartGame() {
         System.out.println("SceneManager.restartGame: Restarting game");
-        soundManager.stopWinMusic(); // Stop win music on restart
         GameState.reset();
         showWelcomeScene();
     }
