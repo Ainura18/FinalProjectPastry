@@ -134,12 +134,4 @@ public class IngredientScene {
         return scene;
     }
 
-    public void enableAllChecks() {
-        for (CheckBox cb : ingredientChecks) {
-            cb.setDisable(false);
-        }
-        System.out.println("IngredientScene.enableAllChecks: All checkboxes enabled");
-    }
-
-
 }
