@@ -32,4 +32,17 @@ public class GameState {
         currentPastry = null;
         correctIngredients = null;
     }
+
+    public static List<String> getRemainingIngredients() {
+        List<String> remaining = new ArrayList<>();
+        if (correctIngredients != null) {
+            for (String ingredient : correctIngredients) {
+                if (!selectedIngredients.contains(ingredient)) {
+                    remaining.add(ingredient);
+                }
+            }
+        }
+        return remaining;
+    }
+
 }
