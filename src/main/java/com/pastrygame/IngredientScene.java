@@ -134,4 +134,16 @@ public class IngredientScene {
         return scene;
     }
 
+
+    public void highlightCorrectIngredients() {
+        for (CheckBox cb : ingredientChecks) {
+            if (GameState.correctIngredients.contains(cb.getText())) {
+                cb.setTextFill(Color.GREEN);
+            } else {
+                cb.setTextFill(Color.GRAY);
+            }
+        }
+        System.out.println("IngredientScene.highlightCorrectIngredients: Highlighted correct ingredients");
+    }
+
 }
