@@ -172,13 +172,4 @@ public class PuzzleScene {
 
 
 
-    private void resetPuzzle() {
-        timeLeft = 60;
-        piecesPlacedCorrectly = 0;
-        puzzlePieces.clear();
-        slots.clear();
-        timer.playFromStart();
-        sceneManager.showPuzzleScene(pastryName); // қайта жүктеу
-    }
-
 }
