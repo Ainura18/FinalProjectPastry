@@ -168,21 +168,4 @@ public class PuzzleScene {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-    public void resetPuzzle() {
-        timeLeft = 60;
-        piecesPlacedCorrectly = 0;
-        timer.stop();
-        timer.playFromStart();
-
-        // Барлық бөлшектерді белсендіре отырып бастапқы орындарына орналастырамыз
-        List<Integer> positions = new ArrayList<>(List.of(0, 1, 2, 3));
-        Collections.shuffle(positions);
-        for (int i = 0; i < puzzlePieces.size(); i++) {
-            ImageView piece = puzzlePieces.get(i);
-            piece.setDisable(false);
-            piece.setLayoutX(50 + (positions.get(i) % 2) * 500);
-            piece.setLayoutY(50 + (positions.get(i) / 2) * 300);
-        }
-    }
 }
