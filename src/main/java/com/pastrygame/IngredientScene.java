@@ -133,14 +133,5 @@ public class IngredientScene {
         System.out.println("IngredientScene.createScene: Ingredient Scene created");
         return scene;
     }
-    private List<String> getSelectedIngredients() {
-        List<String> selected = new ArrayList<>();
-        for (CheckBox cb : ingredientChecks) {
-            if (cb.isSelected()) {
-                selected.add(cb.getText());
-            }
-        }
-        return selected;
-    }
 
 }
