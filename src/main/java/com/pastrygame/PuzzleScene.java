@@ -170,9 +170,5 @@ public class PuzzleScene {
     }
 
 
-    private void updateGameStats() {
-        GameState.incrementWins(); // GameState класына қосу керек
-        System.out.println("Пайдаланушы жеңді! Жалпы жеңістер саны: " + GameState.getWins());
-    }
 
 }
