@@ -284,14 +284,6 @@ public class HangmanScene {
         sceneManager.showWinScene(); // Changed from showWelcomeScene to showWinScene
     }
 
-    private void showWinMessage() {
-        System.out.println("HangmanScene.showWinMessage: Player won the game");
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-        alert.setTitle("Congratulations!");
-        alert.setHeaderText(null);
-        alert.setContentText("You won! The phrase was: " + phrase);
-        alert.showAndWait();
-        sceneManager.showLevelCompleteScene(); // You can adjust this to go to another scene
-    }
+    
 
 }
