@@ -169,13 +169,4 @@ public class PuzzleScene {
         alert.showAndWait();
     }
 
-    public void resetPuzzle() {
-        timeLeft = 60;
-        piecesPlacedCorrectly = 0;
-        puzzlePieces.clear();
-        slots.clear();
-        timer.stop();
-        System.out.println("PuzzleScene.resetPuzzle: Puzzle reset to initial state");
-    }
-
 }
