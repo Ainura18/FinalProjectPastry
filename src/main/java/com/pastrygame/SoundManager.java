@@ -82,4 +82,24 @@ public class SoundManager {
             System.out.println("SoundManager.stopWinMusic: No win music to stop or already closed");
         }
     }
+
+    public void playSoundEffect(String fileName) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
+                    getClass().getResource("/sounds/" + fileName)
+            );
+            if (audioInputStream == null) {
+                System.err.println("SoundManager.playSoundEffect: AudioInputStream is null for " + fileName);
+                return;
+            }
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+            System.out.println("SoundManager.playSoundEffect: Played sound effect: " + fileName);
+        } catch (Exception e) {
+            System.err.println("SoundManager.playSoundEffect: Error playing sound effect: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 }
