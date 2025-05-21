@@ -196,16 +196,4 @@ public class MemoryMatchScene {
         System.out.println("MemoryMatchScene.createFallbackImageView: Fallback image created for: " + text);
         return new ImageView(stackPane.snapshot(null, null));
     }
-
-    private void resetCards() {
-        firstCard = null;
-        secondCard = null;
-        isWaiting = false;
-        System.out.println("MemoryMatchScene.resetCards: Cards reset");
-    }
-
-    // Осы жерден кейін қоса сал:
-    public void sayHello() {
-        System.out.println("Hello from MemoryMatchScene!");
-    }
 }
