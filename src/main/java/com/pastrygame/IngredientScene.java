@@ -133,4 +133,9 @@ public class IngredientScene {
         System.out.println("IngredientScene.createScene: Ingredient Scene created");
         return scene;
     }
+    private void showFeedback(Text feedback, String message, Color color) {
+        feedback.setText(message);
+        feedback.setFill(color);
+    }
+
 }
