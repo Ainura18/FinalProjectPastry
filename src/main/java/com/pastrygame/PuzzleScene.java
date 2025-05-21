@@ -168,11 +168,6 @@ public class PuzzleScene {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-
-    private void highlightCorrectPlacement(ImageView piece) {
-        piece.setStyle("-fx-effect: dropshadow(gaussian, green, 10, 0.5, 0, 0);");
-        System.out.println("PuzzleScene.highlightCorrectPlacement: Piece highlighted");
-    }
+    
 
 }
