@@ -242,26 +242,5 @@ public class SceneManager {
             gc.fillOval(x, y, 6, 6);
         }
     }
-    public void showPauseScene() {
-        System.out.println("SceneManager.showPauseScene: Showing Pause Scene");
-
-        Label pauseLabel = new Label("Game Paused");
-        pauseLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
-        pauseLabel.setTextFill(Color.DARKRED);
-
-        Button resumeButton = new Button("Resume");
-        resumeButton.setOnAction(e -> stage.setScene(stage.getScene())); // Немесе соңғы ойынды сақтап қой
-
-        Button exitButton = new Button("Exit to Main Menu");
-        exitButton.setOnAction(e -> showWelcomeScene());
-
-        VBox layout = new VBox(20, pauseLabel, resumeButton, exitButton);
-        layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: #f0e68c;");
-
-        Scene scene = new Scene(layout, 800, 600);
-        stage.setScene(scene);
-        stage.show();
-    }
 
 }
