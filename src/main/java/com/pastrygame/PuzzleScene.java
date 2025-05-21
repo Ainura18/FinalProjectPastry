@@ -169,5 +169,4 @@ public class PuzzleScene {
         alert.showAndWait();
     }
 
-
 }
