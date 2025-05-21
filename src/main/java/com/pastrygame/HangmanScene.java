@@ -283,5 +283,5 @@ public class HangmanScene {
         showAlert("Congratulations! You guessed the phrase: " + phrase);
         sceneManager.showWinScene(); // Changed from showWelcomeScene to showWinScene
     }
-    
+
 }
