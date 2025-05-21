@@ -169,4 +169,10 @@ public class PuzzleScene {
         alert.showAndWait();
     }
 
+    public boolean isPuzzleComplete() {
+        boolean result = (piecesPlacedCorrectly == 4);
+        System.out.println("PuzzleScene.isPuzzleComplete: " + result);
+        return result;
+    }
+
 }
